@@ -4,6 +4,7 @@
     <intro title="My last posts:"/>
     <!--posts-->
     <postsList :posts="posts"></postsList>
+    <contacts />
   </div>
 </template>
 
@@ -11,10 +12,11 @@
   import promo from '@/components/Promo.vue'
   import intro from '@/components/UI/Intro.vue'
   import postsList from '@/components/Blog/PostsList.vue'
+  import contacts from '@/components/Contacts.vue'
 
   export default {
     components: {
-      promo, intro, postsList
+      promo, intro, postsList, contacts
     },
     data() {
       return {
