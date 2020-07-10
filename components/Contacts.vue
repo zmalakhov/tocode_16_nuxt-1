@@ -15,7 +15,7 @@
 
         <!--buttons-->
         <div class="controls">
-          <button class="btn btnWhite"> Submit!</button>
+          <AppButton class="btnWhite"> Submit </AppButton>
         </div>
       </form>
     </div>
@@ -23,7 +23,9 @@
 </template>
 
 <script>
+  import AppButton from '@/components/UI/Controls/Button.vue'
   export default {
+    components:{AppButton},
     data() {
       return {
         user: {

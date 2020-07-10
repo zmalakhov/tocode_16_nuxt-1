@@ -11,7 +11,8 @@
 
         <!--buttons-->
         <div class="controls">
-          <button class="btn btnPrimary"> Submit!</button>
+          <AppButton> Submit! </AppButton>
+<!--          <button class="btn btnPrimary"> Submit!</button>-->
         </div>
       </form>
     </div>
@@ -19,7 +20,9 @@
 </template>
 
 <script>
+  import AppButton from '@/components/UI/Controls/Button.vue'
   export default {
+    components:{ AppButton },
     data() {
       return {
         comment: {
