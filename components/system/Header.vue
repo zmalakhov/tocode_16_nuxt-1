@@ -22,13 +22,18 @@
     data() {
       return {
         links: [
-          {title: 'Home', url: '/'}
+          {title: 'Home', url: '/'},
+          {title: 'About', url: '/about'},
         ]
       }
     }
   }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  .navbar-link{
+    &.nuxt-link-exact-active{
+      color: #4165de;
+    }
+  }
 </style>
