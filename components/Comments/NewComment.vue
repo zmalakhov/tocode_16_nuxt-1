@@ -1,6 +1,12 @@
 <template>
   <section class="new-comment">
     <div class="container">
+
+      <h2 class="title"> New Comment: </h2>
+
+      <!--Message-->
+      <Message v-if="message" :message="message"/>
+
       <form @submit.prevent="onSubmit" class="contact-form">
 
         <!--name-->
@@ -20,6 +26,7 @@
 </template>
 
 <script>
+  import Message from '@/components/UI/Message.vue'
   import AppButton from '@/components/UI/Controls/Button.vue'
   import AppInput from '@/components/UI/Controls/Input.vue'
   import AppTextArea from '@/components/UI/Controls/TextArea.vue'
@@ -28,6 +35,7 @@
     components: {AppButton, AppInput, AppTextArea},
     data() {
       return {
+        message: null,
         comment: {
           name: '',
           text: '',
@@ -37,7 +45,11 @@
     },
     methods: {
       onSubmit() {
-        console.log(this.comment);
+        this.message = 'Submited!'
+
+        // Reset
+        this.comment.name = ''
+        this.comment.text = ''
       }
     }
   }
