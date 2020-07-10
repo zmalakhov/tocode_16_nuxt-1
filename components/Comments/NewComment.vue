@@ -3,16 +3,16 @@
     <div class="container">
       <form @submit.prevent="onSubmit" class="contact-form">
 
-        <label>Name:</label>
-        <input v-model="comment.name" type="text">
+        <!--name-->
+        <AppInput v-model="comment.name" type="text">Name:</AppInput>
 
-        <label>Text:</label>
-        <textarea v-model="comment.text"></textarea>
+        <!--text-->
+        <AppTextArea v-model="comment.text"> Text:</AppTextArea>
+
 
         <!--buttons-->
         <div class="controls">
-          <AppButton> Submit! </AppButton>
-<!--          <button class="btn btnPrimary"> Submit!</button>-->
+          <AppButton> Submit!</AppButton>
         </div>
       </form>
     </div>
@@ -21,8 +21,11 @@
 
 <script>
   import AppButton from '@/components/UI/Controls/Button.vue'
+  import AppInput from '@/components/UI/Controls/Input.vue'
+  import AppTextArea from '@/components/UI/Controls/TextArea.vue'
+
   export default {
-    components:{ AppButton },
+    components: {AppButton, AppInput, AppTextArea},
     data() {
       return {
         comment: {
