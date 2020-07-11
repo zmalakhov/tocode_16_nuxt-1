@@ -1,6 +1,5 @@
 <template>
     <PostsList :posts="posts" />
-  </div>
 </template>
 
 <script>
