@@ -3,14 +3,14 @@
     <div class="container">
       <form @submit.prevent>
         <AppInput v-model="post.title"> Title:</AppInput>
-        <AppInput v-model="post.descr"> Descr: </AppInput>
-        <AppInput v-model="post.img"> Img Link: </AppInput>
+        <AppInput v-model="post.descr"> Descr:</AppInput>
+        <AppInput v-model="post.img"> Img Link:</AppInput>
         <AppTextArea v-model="post.content"> Content:</AppTextArea>
 
-<!--buttons-->
+        <!--buttons-->
         <div class="controls">
-          <AppButton @click="onSubmit"> Save </AppButton>
-          <AppButton class="btnDanger" @click="cansel"> Cancel </AppButton>
+          <AppButton @click="onSubmit"> Save</AppButton>
+          <AppButton class="btnDanger" @click="cansel"> Cancel</AppButton>
         </div>
       </form>
     </div>
@@ -19,9 +19,15 @@
 
 <script>
     export default {
+        props: {
+            postEdit: {
+                type: Object,
+                required: false
+            }
+        },
         data() {
-            return{
-                post:{
+            return {
+                post: this.postEdit ? {...this.postEdit} : {
                     title: '',
                     descr: '',
                     img: '',
@@ -29,11 +35,11 @@
                 }
             }
         },
-        methods:{
-            onSubmit(){
-              this.$emit('submit', this.post)
+        methods: {
+            onSubmit() {
+                this.$emit('submit', this.post)
             },
-            cansel(){
+            cansel() {
                 this.$router.push('/admin/')
             }
         }
@@ -41,7 +47,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .controls{
+  .controls {
     text-align: center;
     margin: 20px 0;
   }
