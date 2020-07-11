@@ -6,7 +6,7 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores culpa dolorum eligendi illum iusto
           provident quae rerum saepe temporibus. Accusamus accusantium adipisci atque blanditiis culpa!</p>
 
-        <intro title="Lorem ipsum dolor sit amet"/>
+        <Intro title="Lorem ipsum dolor sit amet"/>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores culpa dolorum eligendi illum iusto
           provident quae rerum saepe temporibus. Accusamus accusantium adipisci atque blanditiis culpa!</p>
 
@@ -19,10 +19,7 @@
 </template>
 
 <script>
-  import intro from '@/components/UI/Intro.vue'
-
   export default {
-    components: {intro}
   }
 </script>
 
