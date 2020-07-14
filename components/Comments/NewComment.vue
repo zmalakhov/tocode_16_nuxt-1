@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
   export default {
     data() {
       return {
@@ -39,11 +40,19 @@
     },
     methods: {
       onSubmit() {
-        this.message = 'Submited!'
+        this.$store.dispatch('addComment', {
+          postId: '',
+          publish: false,
+          ...this.comment
+        })
+        .then(()=>{
+          this.message = 'Submited!'
+          // Reset
+          this.comment.name = ''
+          this.comment.text = ''
+        })
+        .catch(e => {console.log(e)})
 
-        // Reset
-        this.comment.name = ''
-        this.comment.text = ''
       }
     }
   }
