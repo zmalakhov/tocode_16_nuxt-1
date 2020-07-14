@@ -36,6 +36,26 @@ export const actions = {
       })
       .catch(e => console.log(e))
   },
+  authUser({commit}, authData){
+    // standart-1
+
+    const key = 'AIzaSyCANXT_cEuwPhSrNQd1xReq0PZjxqE1NAg'
+    // return axios.post(`https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${key}`,{
+    //   email: authData.email,
+    //   password: authData.password,
+    //   returnSecureToken: true
+    // })
+
+
+    return axios.post(`https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${key}`, {
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true
+    })
+      // .then((res) => { commit('setToken', res.data.idToken) })
+      // .catch(e => console.log(e))
+
+  },
   addPost({commit}, post) {
     // console.log(post);
     return axios.post('https://blog-nuxt-7d8fd.firebaseio.com/posts.json', post)
