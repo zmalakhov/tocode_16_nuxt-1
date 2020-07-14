@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
     <post :post="post" />
+<!--    <p>{{commentsArray}}</p>-->
     <comments :comments="comments" />
-    <newComment />
+    <newComment :postId="$route.params.id" />
   </div>
 
 </template>
@@ -21,9 +22,27 @@
         axios.get(`https://blog-nuxt-7d8fd.firebaseio.com/posts/${context.params.id}.json`),
         axios.get(`https://blog-nuxt-7d8fd.firebaseio.com/comments.json`)
       ])
+
+      // let commentsArray = [],
+      //     commentsArrayRes = []
+      // Object.keys(comments.data).forEach(key => {
+      //   commentsArray.push(comments.data[key])
+      // })
+      //
+      // for (let i = 0; i < commentsArray.length; i++) {
+      //   if (commentsArray[i].postId === context.params.id && commentsArray[i].publish === true){
+      //     commentsArrayRes.push(commentsArray[i])
+      //   }
+      // }
+
+      let commentsArrayRes = Object.values(comments.data)
+        .filter(comment => (comment.postId === context.params.id) && (comment.publish === true))
+
+
       return {
         post: post.data,
-        comments: comments.data,
+        // comments: comments.data,
+        comments: commentsArrayRes,
       }
     }
     // data() {
