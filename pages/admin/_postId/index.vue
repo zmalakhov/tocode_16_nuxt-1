@@ -6,28 +6,31 @@
 </template>
 
 <script>
-    import newPostForm from '@/components/admin/NewPostForm.vue'
-    export default {
-        components:{ newPostForm },
-        layout: 'admin',
-        data(){
-            return{
-                post: {
-                    id: 1,
-                    title: '1 post',
-                    descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-                    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-                    img: 'https://lawnuk.com/wp-content/uploads/2016/08/sprogs-dogs.jpg',
-                },
-            }
-        },
-        methods:{
-            onSubmit(post){
-                console.log('Post Editing');
-                console.log(post);
-            }
-        }
+  import axios from 'axios'
+  import newPostForm from '@/components/admin/NewPostForm.vue'
+
+  export default {
+    components: {newPostForm},
+    layout: 'admin',
+    asyncData(context) {
+      return axios.get(`https://blog-nuxt-7d8fd.firebaseio.com/posts/${context.params.postId}.json`)
+        .then(res => {
+          return {
+            post: {...res.data, id: context.params.postId}
+          }
+        })
+        .catch(e => context.error(e))
+    },
+    methods: {
+      onSubmit(post) {
+        console.log('Post Editing');
+        this.$store.dispatch('editPost', post)
+        .then(()=>{
+          this.$router.push('/admin')
+        })
+      }
     }
+  }
 </script>
 
 <style scoped>

@@ -5,12 +5,16 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setPosts(state, posts){
+  setPosts(state, posts) {
     state.postLoaded = posts
   },
   addPost(state, post) {
     console.log(post);
     state.postLoaded.push(post)
+  },
+  editPost(state, postEdit) {
+    const postIndex = state.postLoaded.findIndex(post => post.id === postEdit.id)
+    state.postLoaded[postIndex] = postEdit
   }
 }
 
@@ -20,7 +24,7 @@ export const actions = {
       .then(res => {
         const postsArray = []
         for (const key in res.data) {
-          postsArray.push( { ...res.data[key], id: key } )
+          postsArray.push({...res.data[key], id: key})
         }
         // Res
         commit('setPosts', postsArray)
@@ -35,10 +39,17 @@ export const actions = {
         commit('addPost', {...post, id: res.data.name})
       })
       .catch(e => console.log(e))
+  },
+  editPost({commit}, post) {
+    return axios.put(`https://blog-nuxt-7d8fd.firebaseio.com/posts/${post.id}.json`, post)
+      .then(res => {
+        commit('editPost', post)
+      })
+      .catch(e => console.log(e))
   }
 }
 export const getters = {
-  getPostsLoaded (state){
+  getPostsLoaded(state) {
     console.log(state.postLoaded);
     return state.postLoaded
   }
