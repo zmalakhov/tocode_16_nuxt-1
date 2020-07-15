@@ -17,6 +17,24 @@
 
   export default {
     components:{ post, comments, newComment },
+    head() {
+      let title = this.post.title,
+        descr = this.post.descr,
+        type = 'article',
+        img = this.post.img
+      return{
+        title: title,
+        meta:[
+          {hid: 'og:title', name: 'og:title', content: title},
+          {hid: 'description', name: 'description', content: descr},
+          {hid: 'og:description', name: 'og:description', content: descr},
+          {hid: 'og:type', name: 'og:type', content: type},
+          {hid: 'og:img', name: 'og:img', content: img},
+
+        ]
+      }
+    },
+
     async asyncData(context) {
       let [post, comments] = await Promise.all([
         axios.get(`https://blog-nuxt-7d8fd.firebaseio.com/posts/${context.params.id}.json`),
